@@ -1,23 +1,35 @@
 package com.boots.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "comments")
 public class Comment {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String text;
-    
+    private Long authorId;
+    private Long videoId;
 
-    public String getId() {
+    public Long getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
+    }
+
+    public Comment(){
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,5 +40,12 @@ public class Comment {
     public void setText(String text) {
         this.text = text;
     }
-}
 
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+}

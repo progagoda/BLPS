@@ -1,33 +1,26 @@
 package com.boots.entity;
 
-import com.boots.entity.Comment;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "videos")
 public class Video {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
 
-    private String description;
+    public Video(){}
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "video_id")
-    private List<Comment> comments;
-
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,42 +30,5 @@ public class Video {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public void addComment(Comment comment) {
-        comments.add(comment);
-    }
-
-    public void deleteComment(Comment comment) {
-        comments.remove(comment);
-    }
-
-    public Comment getCommentById(String id) {
-        for (Comment comment : comments) {
-            if (comment.getId().equals(id)) {
-                return comment;
-            }
-        }
-        return null;
-    }
-
-    public Video orElseThrow(Object video_not_found) {
-        return null;
     }
 }
