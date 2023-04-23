@@ -14,6 +14,13 @@ public class Comment {
     private Long authorId;
     private Long videoId;
 
+    public Comment(Long commentId, String text, Long userId, Long vidId) {
+        this.id=commentId;
+        this.text = text;
+        this.authorId = userId;
+        this.videoId = vidId;
+    }
+
     public Long getVideoId() {
         return videoId;
     }
